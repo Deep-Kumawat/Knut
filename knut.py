@@ -1,22 +1,15 @@
-# Notes From Deep
-# We need to save the macros, so that a user doesnt need to create a new macro every single time.
-################
-# Notes From Zaid
-################
-
-# cli of oneClickSolution
+# cli of knut
 # imports------------------------------
 import time
 import pyautogui
 import keyboard
 import pickle
 # end of imports-----------------------
-# i want to some how store the action in a list or something
 
 # -------------------initializations-----------------------------------------------------------
 listOfActions = []
 # ------------------------------------------------------------------------------
-print("Welcome to OCS. Here, you can map a macro to click a button(and more!)")
+print("Welcome to Knut. Here, you can map a macro to click a button(and more!)")
 # choices to make new macro or make a new one.
 userChoiceToMakeNewMacrosOrUseExisting = int(input("Enter the number corresponding to the choice: \n0. Exit\n1. Use your created shortcuts\n2. Create new macros\nYour Input ---> "))
 while userChoiceToMakeNewMacrosOrUseExisting != 0:
@@ -46,14 +39,6 @@ while userChoiceToMakeNewMacrosOrUseExisting != 0:
                 keyboard.press(i[1])
             elif i[0] == "Text":
                 pyautogui.write(i[1])
-            # elif i[0] == "KeyCombination":
-            #     print(i)
-            #     for key in i[1]:
-            #         pyautogui.keyDown(key)
-            #     for key in range(-1, -len(i[1])):
-            #         pyautogui.keyUp(key)
-            #     continue
-            #hotkey method
             elif i[0] == "KeyCombination":
                 if len(i[1]) == 2:
                     pyautogui.hotkey(i[1][0], i[1][1])
@@ -63,7 +48,6 @@ while userChoiceToMakeNewMacrosOrUseExisting != 0:
                     pyautogui.hotkey(i[1][0], i[1][1], i[1][2], i[1][3])
                 else:
                     print("Are you sure you added the correct key combination? This feature only works with a combination containing 2-4 keys.")
-                # pyautogui.hotkey(i[1])
     elif userChoiceToMakeNewMacrosOrUseExisting == 2:  # 2 to create new macros
         print("press the key to which you want to map the action and then press the escape key:")
         time.sleep(0.5)#it was registering enter without this delay
@@ -76,12 +60,6 @@ while userChoiceToMakeNewMacrosOrUseExisting != 0:
         while True:  # asking the user what action he/she wants to execute. 0 to exit
             newMacroActionType_UserInput = int(input(
                 "Enter the number corresponding to the choice: \n0. Go Back\n1. Mouse Single Click\n2. Mouse Double Click\n3. Mouse Drag\n4. Key Press\n5. Text\n6. Key Combination\nYour Input ---> "))
-                #1. Mouse Single Click
-                #2. Mouse Double Click
-                #3. Mouse Drag
-                #4. Key Press
-                #5. Text
-                #6. Key Combination
             if newMacroActionType_UserInput == 0:
                 userChoiceToMakeNewMacrosOrUseExisting = int(input(
                     "\nYou got back\n\nEnter the number corresponding to the choice: \n0. Exit\n1. Use your created shortcuts\n2. Create new macros\nYour Input ---> "))
@@ -105,7 +83,6 @@ while userChoiceToMakeNewMacrosOrUseExisting != 0:
                     listOfActions.append(listForMouseDoubleClick)
                     break
                 elif newMacroActionType_UserInput == 3:#for mouse drag
-                    # print("This is for mouse drag which, isnt completed yet.")
                     input_delay = int(input("Enter the amount of delay(in seconds) you want before positioning your mouse on the START position of the mouse drag:- "))
                     for i in range(1, input_delay+1):
                         print("tik tik", i)
