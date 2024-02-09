@@ -16,8 +16,16 @@ while userChoiceToMakeNewMacrosOrUseExisting != 0:
     if userChoiceToMakeNewMacrosOrUseExisting == 0:  # 0 to exit
         exit()
     elif userChoiceToMakeNewMacrosOrUseExisting == 1:  # 1 to use already created shortcuts
-        # print("\nwe are working on this bit...\n")
-        inputMacroKey = pickle.load(open("inputMacroKeyStoringFile.dat", "rb"))
+        try:
+            inputMacroKey = pickle.load(open("inputMacroKeyStoringFile.dat", "rb"))
+        except:
+            print("You have no saved shortkeys!")
+            makeANewMacroOrNo = input("Make a new macro (yes/no)")
+            if(makeANewMacroOrNo == "no"):
+                exit()
+            elif(makeANewMacroOrNo == "yes"):
+                userChoiceToMakeNewMacrosOrUseExisting = 2
+                continue 
         print("waiting for the macro key to be pressed...")
         keyboard.wait(inputMacroKey)
         listOfActions = pickle.load(open("listOfActionStoringFile.dat", "rb"))

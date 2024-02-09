@@ -1,3 +1,5 @@
 inputMacroKeyStoringFile.dat
 listOfActionStoringFile.dat
 /.vscode
+/build
+/knut.spec
