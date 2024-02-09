@@ -60,7 +60,7 @@ while userChoiceToMakeNewMacrosOrUseExisting != 0:
         print("press the key to which you want to map the action and then press the escape key:")
         time.sleep(0.5)#it was registering enter without this delay
         inputMacroKey = keyboard.record(until='esc')
-        print(inputMacroKey)
+        # print(inputMacroKey)
         inputMacroKey = str(inputMacroKey[0])
         inputMacroKey = inputMacroKey[14:-6]
         print("Your selected macro key was --->", inputMacroKey)
