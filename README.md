@@ -1,9 +1,17 @@
 # Knut
-A command-line tool for creating complex shortcuts and hotkeys. It supports both keystrokes, mouse movements and any combinations of the two. 
+A command-line tool for creating complex shortcuts and hotkeys.
 
-## Installation
-### Windows
-```
-cd /dist
-Start knut.exe
-```
+## Features
+- Mouse
+  - Movements
+  - Clicks
+  - Drags
+- Keyboard
+  - Single Keystroke
+  - Key Combination
+
+You can map any combination of these to a single key.
+
+### Example
+You can map the `pause` key to perform: mouse double click -> key combination -> mouse drag -> key combination -> mouse movement etc.
+
