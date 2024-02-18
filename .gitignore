@@ -3,3 +3,4 @@ listOfActionStoringFile.dat
 /.vscode
 /build
 /knut.spec
+/__pycache__

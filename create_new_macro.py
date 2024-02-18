@@ -4,6 +4,7 @@ import time
 import pyautogui
 import keyboard
 import pickle
+import subprocess
 import sys
 # end of imports-----------------------
 
@@ -29,7 +30,7 @@ def createNewMacro():
             pickle.dump(inputMacroKey, open("inputMacroKeyStoringFile.dat", "wb"))
             while True:  # asking the user what action he/she wants to execute. 0 to exit
                 newMacroActionType_UserInput = int(input(
-                    "Enter the number corresponding to the choice: \n0. Go Back\n1. Mouse Single Click\n2. Mouse Double Click\n3. Mouse Drag\n4. Key Press\n5. Text\n6. Key Combination\nYour Input ---> "))
+                    "Enter the number corresponding to the choice: \n0. Go Back\n1. Mouse Single Click\n2. Mouse Double Click\n3. Mouse Drag\n4. Key Press\n5. Text\n6. Key Combination\n7. Terminal Command\nYour Input ---> "))
                 if newMacroActionType_UserInput == 0:
                     userChoiceToMakeNewMacrosOrUseExisting = int(input(
                         "\nYou got back\n\nEnter the number corresponding to the choice: \n0. Exit\n1. Use your created shortcuts\n2. Create new macros\nYour Input ---> "))
@@ -87,8 +88,12 @@ def createNewMacro():
                         actionKeyCombination = actionKeyCombination.split(',')
                         listForKeyCombination = ["KeyCombination", actionKeyCombination]
                         listOfActions.append(listForKeyCombination)                    
-                    break
-            pickle.dump(listOfActions, open("listOfActionStoringFile.dat", "wb"))
-        else:#for an invalid input
-            print("\nInvalid input try again!\n")
-            userChoiceToMakeNewMacrosOrUseExisting = int(input("Enter the number corresponding to the choice: \n0. Exit\n1. Create new macros\nYour Input ---> "))
+                    elif newMacroActionType_UserInput == 7:#for terminal commands
+                        terminalCommand = input("Enter terminal command that you want to execute: ")
+                        listForKeyCombination = ["TerminalCommand", terminalCommand]
+                        listOfActions.append(listForKeyCombination)
+                        pickle.dump(listOfActions, open("listOfActionStoringFile.dat", "wb"))
+                        break
+                    else:#for an invalid input
+                        print("\nInvalid input try again!\n")
+                        userChoiceToMakeNewMacrosOrUseExisting = int(input("Enter the number corresponding to the choice: \n0. Exit\n1. Create new macros\nYour Input ---> "))

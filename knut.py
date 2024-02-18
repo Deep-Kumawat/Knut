@@ -1,18 +1,12 @@
-# JUST LISTEN FOR MACROS IN THIS FILE
-# imports------------------------------
+import subprocess
 import time
 import pyautogui
 import keyboard
 import pickle
-
 from create_new_macro import createNewMacro
-# end of imports-----------------------
 
-# -------------------initializations-----------------------------------------------------------
 listOfActions = []
-# ------------------------------------------------------------------------------
-# print("Welcome to Knut. Here, you can map a macro to click a button(and more!)")
-# userChoiceToMakeNewMacrosOrUseExisting = int(input("Enter the number corresponding to the choice: \n0. Exit\n1. Use your created shortcuts\n2. Create new macros\nYour Input ---> "))
+
 try:
     inputMacroKey = pickle.load(open("inputMacroKeyStoringFile.dat", "rb"))
 except:
@@ -24,7 +18,6 @@ except:
         exit_code = createNewMacro()
         if exit_code == -1:
             exit()
-        # learn how to run another python script from another script.         
 print("waiting for the macro key to be pressed...")
 keyboard.wait(inputMacroKey)
 listOfActions = pickle.load(open("listOfActionStoringFile.dat", "rb"))
@@ -55,4 +48,14 @@ for i in listOfActions:
             pyautogui.hotkey(i[1][0], i[1][1], i[1][2], i[1][3])
         else:
             print("Are you sure you added the correct key combination? This feature only works with a combination containing [2-4] keys.")
-
+    elif i[0] == "TerminalCommand":
+        try:
+            result = subprocess.run(i[1], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, shell=True)
+            print("Output:", result.stdout)
+            # Print the error, if any
+            if result.stderr:
+                print("Error:", result.stderr)
+            # Print the return code
+            print("Return Code:", result.returncode)
+        except Exception as e:
+            print("An error occurred:", str(e))
