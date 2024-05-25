@@ -4,3 +4,4 @@ listOfActionStoringFile.dat
 /build
 /knut.spec
 /__pycache__
+.venv
